@@ -31,7 +31,7 @@ We note that CGL first trains a group classifier and a proper threshold using a 
 ```
 $ python main_groupclf.py --model <model_type> --method scratch \
     --dataset <dataset_name> \
-    --version groupclfval \
+    --version groupclf_val \
     --sv <group_label ratio> 
 ```
     
@@ -42,7 +42,7 @@ In above command, the 'version' can be chosen beween 'groupclf' or 'groupclfval'
 $ python main_groupclf.py --model <model_type> --method scratch \ 
     --dataset <dataset_name> \
     --mode eval \
-    --version groupclfval \
+    --version groupclf_val \
     --sv <group_label_ratio>  
 ```
     
