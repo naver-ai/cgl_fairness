@@ -71,9 +71,9 @@ $ python main.py --model <model_type> --method fairhsic \
 ```
 - LBC
 ```
-$ python main.py --model <model_type> --method lbc \
+$ python main.py --model <model_type> --method reweighting \
     --dataset <dataset_name> \
-    --iter <iter> \
+    --iteration <iteration> \
     --version cgl \
     --sv {group_label_ratio} \
 ```
