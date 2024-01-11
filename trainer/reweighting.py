@@ -179,7 +179,8 @@ class Trainer(trainer.GenericTrainer):
         acc = torch.mean(y_pred == label)
         total_num = len(y_pred)
         violations = torch.zeros((num_groups, num_classes))
-
+        if self.cuda:
+            violations = violations.cuda()
         for g in range(num_groups):
             for c in range(num_classes):
                 pivot = len(torch.where(y_pred == c)[0]) / total_num
@@ -192,6 +193,8 @@ class Trainer(trainer.GenericTrainer):
     def get_error_and_violations_EO(self, y_pred, label, sen_attrs, num_groups, num_classes):
         acc = torch.mean((y_pred == label).float())
         violations = torch.zeros((num_groups, num_classes))
+        if self.cuda:
+            violations = violations.cuda()
         for g in range(num_groups):
             for c in range(num_classes):
                 class_idxs = torch.where(label == c)[0]

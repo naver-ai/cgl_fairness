@@ -16,6 +16,8 @@ class Trainer(trainer.GenericTrainer):
 
     def train(self, train_loader, test_loader, epochs, criterion=None, writer=None):
         global loss_set
+        if criterion == None:
+            criterion = self.criterion
         model = self.model
         model.train()
 
@@ -23,7 +25,7 @@ class Trainer(trainer.GenericTrainer):
             self._train_epoch(epoch, train_loader, model, criterion)
 
             eval_start_time = time.time()
-            eval_loss, eval_acc, eval_deom, eval_deoa, eval_subgroup_acc = self.evaluate(self.model, test_loader, self.criterion)
+            eval_loss, eval_acc, eval_deom, eval_deoa, eval_subgroup_acc = self.evaluate(self.model, test_loader, criterion)
             eval_end_time = time.time()
             print('[{}/{}] Method: {} '
                   'Test Loss: {:.3f} Test Acc: {:.2f} Test DEOM {:.2f} [{:.2f} s]'.format

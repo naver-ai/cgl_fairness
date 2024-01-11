@@ -173,7 +173,8 @@ class SSLDataset(GenericDataset):
             folder = 'group_clf'
             model = 'resnet18' if self.name in ['utkface', 'celeba', 'utkface_fairface'] else 'mlp'
             epochs = '70' if self.name in ['utkface', 'celeba', 'utkface_fairface'] else '50'
-            filename_pre = f'{model}_seed{self.seed}_epochs{epochs}_bs128_lr0.001'
+            bs = '128' if self.name != 'adult' else '1024'
+            filename_pre = f'{model}_seed{self.seed}_epochs{epochs}_bs{bs}_lr0.001'
             filename_post = f'_sv{self.sv_ratio}_groupclf_val.pt'
             if self.name == 'celeba':
                 if self.target_attr != 'Attractive':
