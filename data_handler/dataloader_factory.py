@@ -44,7 +44,7 @@ class DataloaderFactory:
             shuffle = False
 
         train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, sampler=sampler,
-                                      num_workers=num_workers, worker_init_fn=_init_fn, pin_memory=True, drop_last=True)
+                                      num_workers=num_workers, worker_init_fn=_init_fn, pin_memory=True, drop_last=False)
 
         test_dataloader = DataLoader(test_dataset, batch_size=256, shuffle=False,
                                      num_workers=num_workers, worker_init_fn=_init_fn, pin_memory=True)
