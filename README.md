@@ -58,6 +58,7 @@ $ python main.py --model <model_type> --method mfd \
     --version cgl \
     --sv {group_label_ratio} \
     --lamb 100 \
+    --teacher-type mlp \
     --teacher-path <your_model_trained_from_scratch> 
 ```
 - FairHSIC
