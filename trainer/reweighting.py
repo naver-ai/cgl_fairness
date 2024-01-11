@@ -31,6 +31,8 @@ class Trainer(trainer.GenericTrainer):
         num_classes = train_loader.dataset.num_classes
 
         extended_multipliers = torch.zeros((num_groups, num_classes))
+        if self.cuda:
+            extended_multipliers = extended_multipliers.cuda()
         _, Y_train, S_train = self.get_statistics(train_loader.dataset, batch_size=self.batch_size,
                                                   num_workers=self.num_workers)
 
@@ -46,6 +48,7 @@ class Trainer(trainer.GenericTrainer):
             weight_set = self.debias_weights(Y_train, S_train, extended_multipliers, num_groups, num_classes)
 
             for epoch in range(epochs):
+                self._train_epoch(epoch, train_loader, model, weight_set)
                 eval_start_time = time.time()
                 eval_loss, eval_acc, eval_deom, eval_deoa, eval_subgroup_acc = self.evaluate(self.model, test_loader, self.criterion)
                 eval_end_time = time.time()
